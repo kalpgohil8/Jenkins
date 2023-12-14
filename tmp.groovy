@@ -12,13 +12,13 @@ def copy_ip_to_Json(json_path, ip_addr) {
     try {
         jsonContent.Input[0].each { syncModeName, syncModeDetails ->
             if (syncModeDetails.TEST_MODE == 1) {
-                println("Changing BoardIp_Dynamic for ${syncModeName}")
+                echo "Changing BoardIp_Dynamic for ${syncModeName}"
                 syncModeDetails.BoardIp_Dynamic = ip_addr
             }
         }
         writeJSON file: json_path, json: jsonContent
     } catch (err) {
-        println "Error ip (${ip_addr} at ${json_path} : ${err})"
+        echo "Error ip (${ip_addr} at ${json_path} : ${err})"
     }
 }
 
@@ -58,7 +58,9 @@ node {
         def selectedOption = userInput['selectedOption']
         echo "Selected Option: ${selectedOption}"
 
-        copy_ip_to_Json("${workdir()}/${project()}/input.json", jsonFile['boards'][0]['ports'][0]['ip_addr'].trim())
+        evaluate {
+            copy_ip_to_Json("${workdir()}/${project()}/input.json", jsonFile['boards'][0]['ports'][0]['ip_addr'].trim())
+        }
 
         def input_after = readJSON file: "${workdir()}/${project()}/input.json"
         echo "${input_after}"
