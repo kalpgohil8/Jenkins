@@ -1,0 +1,24 @@
+{
+    "device_name": "MyDevice",
+    "ip_address": "192.168.1.100",
+    "boards" : [
+        {
+            "site_name": "LAB1",
+            "site_ipaddr": "10.10.10.10",
+            "ports": [
+                {
+                    "ip_addr": "10.10.10.11",
+                    "linux": "eth0"
+                }
+            ],
+        }
+    ],
+    "mac_address": "00:1A:2B:3C:4D:5E",
+    "port": 8080,
+    "manufacturer": "Example Inc.",
+    "model": "Model XYZ",
+    "serial_number": "ABC123",
+    "firmware_version": "v1.0.0",
+    "status": "Active",
+    "last_update": "2023-12-13T12:34:56Z"
+}
