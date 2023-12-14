@@ -19,7 +19,7 @@ node {
             }
         }
 
-        git branch: 'main', url: 'https://github.com/kalpgohil8/tmp.git'
+        git branch: 'test-pipeline', url: 'https://github.com/kalpgohil8/Jenkins.git'
 
         def kalp = readJSON file: "${workdir()}/${project()}/Json"
         echo "${kalp}"
