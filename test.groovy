@@ -21,9 +21,9 @@ node {
 
         git branch: 'test-pipeline', url: 'https://github.com/kalpgohil8/Jenkins.git'
 
-        def kalp = readJSON file: "${workdir()}/${project()}/Json"
-        echo "${kalp}"
-        echo "${kalp['boards'][0]['ports'][0]['ip_addr']}"
+        def jsonFile = readJSON file: "${workdir()}/${project()}/Json"
+        echo "${jsonFile}"
+        echo "${jsonFile['boards'][0]['ports'][0]['ip_addr']}"
 
         def input_before = readJSON file: "${workdir()}/${project()}/input.json"
         echo "${input_before}"
