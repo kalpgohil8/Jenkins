@@ -28,7 +28,7 @@ node {
         def input_before = readJSON file: "${workdir()}/${project()}/input.json"
         echo "${input_before}"
         
-        copy_ip_to_Json("${workdir()}/${project()}/input.json", kalp['boards'][0]['ports'][0]['ip_addr'])
+        copy_ip_to_Json("${workdir()}/${project()}/input.json", kalp['boards'][0]['ports'][0]['ip_addr'].trim())
         
         def input_after = readJSON file: "${workdir()}/${project()}/input.json"
         echo "${input_after}"
