@@ -34,7 +34,7 @@ node {
 
         sh '''
             python3 get_dynamic_ip.py ${workdir()}/${project()}/input.json B > SYNC_A_IP.log
-            def AIP = sh(script: 'cat SYNC_A_IP.log', returnStdout: true).trim()
+            def AIP = sh(script: "cat SYNC_A_IP.log", returnStdout: true).trim()
             println("AIP: ${AIP}")
         '''
     }
