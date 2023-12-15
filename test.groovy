@@ -32,7 +32,7 @@ node {
         def input_after = readJSON file: "${workdir()}/${project()}/input.json"
         println ("Input.json after change : ${input_before}")
 
-        def AIP = sh(script: "python3 get_dynamic_ip.py ${workdir()}/${project()}/input.json B", returnStdout: true)
+        def AIP = sh returnStdout: true, script: "python3 get_dynamic_ip.py ${workdir()}/${project()}/input.json B"
         println("AIP: ${AIP}")
     }
 }
