@@ -33,11 +33,13 @@ node {
         def input_after = readJSON file: "${workdir()}/${project()}/input.json"
         echo "${input_after}"
 
-        script {
-            sh "python3 get_dynamic_ip.py ${workdir()}/${project()}/input.json B > SYNC_A_IP.log"
-            def AIP = readFile('SYNC_A_IP.log').trim()
-            echo "AIP: ${AIP}"
-        } 
+
+        sh '''
+            python3 get_dynamic_ip.py ${workdir()}/${project()}/input.json B > SYNC_A_IP.log"
+            AIP = `cat SYNC_A_IP.log`
+            echo $AIP
+        '''
+
     }
 }
 
