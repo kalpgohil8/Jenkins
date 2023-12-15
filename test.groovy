@@ -22,22 +22,21 @@ node {
         git branch: 'test-pipeline', url: 'https://github.com/kalpgohil8/Jenkins.git'
 
         def jsonFile = readJSON file: "${workdir()}/${project()}/Json"
-        echo "${jsonFile}"
-        echo "${jsonFile['boards'][0]['ports'][0]['ip_addr']}"
+        println ("BoardIp_Dynamic : ${jsonFile['boards'][0]['ports'][0]['ip_addr']}")
 
         def input_before = readJSON file: "${workdir()}/${project()}/input.json"
-        echo "${input_before}"
+        println ("Inout.json before change : ${input_before}")
         
-        copy_ip_to_Json("${workdir()}/${project()}/input.json", kalp['boards'][0]['ports'][0]['ip_addr'].trim())
+        copy_ip_to_Json("${workdir()}/${project()}/input.json", jsonFile['boards'][0]['ports'][0]['ip_addr'].trim())
         
         def input_after = readJSON file: "${workdir()}/${project()}/input.json"
-        echo "${input_after}"
+        println ("Inout.json after change : ${input_before}")
 
-        script {
-            sh "python3 get_dynamic_ip.py ${workdir()}/${project()}/input.json B > SYNC_A_IP.log"
+        sh '''
+            python3 get_dynamic_ip.py ${workdir()}/${project()}/input.json B > SYNC_A_IP.log"
             def AIP = readFile('SYNC_A_IP.log').trim()
-            echo "AIP: ${AIP}"
-        } 
+            println("AIP: ${AIP}")
+        '''
     }
 }
 
