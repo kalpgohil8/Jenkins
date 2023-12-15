@@ -34,6 +34,12 @@ node {
 
         def AIP = sh returnStdout: true, script: "python3 get_dynamic_ip.py ${workdir()}/${project()}/input.json B"
         println("AIP: ${AIP}")
+
+        sh """
+        echo $AIP
+        # echo $jsonFile
+        echo $jsonFile
+        """
     }
 }
 
