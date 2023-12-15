@@ -41,16 +41,16 @@ node {
 def copy_ip_to_Json(json_path, ip_addr) {
     def jsonContent = readJSON file: json_path
 
-    try{
+    try {
         jsonContent.Input[0].each { syncModeName, syncModeDetails ->
-        // println("${syncModeName}" : "${syncModeDetails}")
-        if (syncModeDetails.TEST_MODE == 1){
-            println ("Changing BoardIp_Dynamic for ${syncModeName}")
-            syncModeDetails.BoardIp_Dynamic = ip_addr
-        }    
+            // println("${syncModeName}" : "${syncModeDetails}")
+            if (syncModeDetails.TEST_MODE == 1) {
+                println("Changing BoardIp_Dynamic for ${syncModeName}")
+                syncModeDetails.BoardIp_Dynamic = ip_addr
+            }
+        }
+        writeJSON file: json_path, json: jsonContent
+    } catch (err) {
+        println "Error ip (${ip_addr} at ${json_path} : ${err})"
     }
-    writeJSON file: json_path, json: jsonContent
-    } catch (err){
-        println "Error ip (${ip_addr} at ${json_path} : ${err})" 
-    }
-}  
+}
