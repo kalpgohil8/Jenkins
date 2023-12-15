@@ -53,4 +53,4 @@ def copy_ip_to_Json(json_path, ip_addr) {
     } catch (err){
         println "Error ip (${ip_addr} at ${json_path} : ${err})" 
     }
-}
+}  
