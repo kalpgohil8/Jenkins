@@ -25,15 +25,15 @@ node {
         println ("BoardIp_Dynamic : ${jsonFile['boards'][0]['ports'][0]['ip_addr']}")
 
         def input_before = readJSON file: "${workdir()}/${project()}/input.json"
-        println ("Inout.json before change : ${input_before}")
+        println ("Input.json before change : ${input_before}")
         
         copy_ip_to_Json("${workdir()}/${project()}/input.json", jsonFile['boards'][0]['ports'][0]['ip_addr'].trim())
         
         def input_after = readJSON file: "${workdir()}/${project()}/input.json"
-        println ("Inout.json after change : ${input_before}")
+        println ("Input.json after change : ${input_before}")
 
         sh '''
-            python3 get_dynamic_ip.py ${workdir()}/${project()}/input.json B > SYNC_A_IP.log"
+            python3 get_dynamic_ip.py ${workdir()}/${project()}/input.json B > SYNC_A_IP.log
             def AIP = readFile('SYNC_A_IP.log').trim()
             println("AIP: ${AIP}")
         '''
