@@ -34,9 +34,9 @@ node {
 
         sh '''
             AIP=$(python3 get_dynamic_ip.py ${workdir()}/${project()}/input.json B)
-            echo "AIP: ${AIP}"
+            echo "${AIP}"
         '''
-    }
+    
 }
 
 
