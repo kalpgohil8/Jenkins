@@ -35,6 +35,7 @@ node {
 
         def AIP = sh(script: 'python3 get_dynamic_ip.py ${workdir()}/${project()}/input.json B', returnStdout: true)
         println("AIP: ${AIP}")
+    }
 }
 
 
