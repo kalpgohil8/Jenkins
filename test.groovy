@@ -1,14 +1,6 @@
-def workdir() {
-    return 'workdir'
-}
-
-def project() {
-    return 'kalp2'
-}
-
 node {
     stage('Preparation') {
-        echo 'Preparation'
+        jenkins = load "utils/jenkins.groovy"
     }
 
     stage('Test') {
@@ -19,27 +11,22 @@ node {
             }
         }
 
-        git branch: 'test-pipeline', url: 'https://github.com/kalpgohil8/Jenkins.git'
+        git.cloneAndCheckoutBranch("Jenkins", "test-pipeline", "$WORKSPACE", "git@github.com:kalpgohil8")
 
-        def jsonFile = readJSON file: "${workdir()}/${project()}/Json"
+
+        def jsonFile = readJSON file: "workdir/kalp2/Json"
         println ("BoardIp_Dynamic : ${jsonFile['boards'][0]['ports'][0]['ip_addr']}")
 
-        def input_before = readJSON file: "${workdir()}/${project()}/input.json"
+        def input_before = readJSON file: "workdir/kalp2/input.json"
         println ("Input.json before change : ${input_before}")
         
-        copy_ip_to_Json("${workdir()}/${project()}/input.json", jsonFile['boards'][0]['ports'][0]['ip_addr'].trim())
+        copy_ip_to_Json("workdir/kalp2/input.json", jsonFile['boards'][0]['ports'][0]['ip_addr'].trim())
         
-        def input_after = readJSON file: "${workdir()}/${project()}/input.json"
+        def input_after = readJSON file: "workdir/kalp2/input.json"
         println ("Input.json after change : ${input_before}")
 
-        def AIP = sh returnStdout: true, script: "python3 get_dynamic_ip.py ${workdir()}/${project()}/input.json B"
+        def AIP = sh returnStdout: true, script: "python3 get_dynamic_ip.py workdir/kalp2/input.json B"
         println("AIP: ${AIP}")
-
-        sh """
-        echo $AIP
-        # echo $jsonFile
-        echo $jsonFile
-        """
     }
 }
 
