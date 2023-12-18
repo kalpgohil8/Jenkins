@@ -1,6 +1,12 @@
 node {
+
+    stage('Clean Workspace') {
+        deleteDir()
+    }
+
     stage('Preparation') {
-        jenkins = load "utils/jenkins.groovy"
+        git.cloneAndCheckoutBranch("Jenkins", "test-pipeline", "$WORKSPACE", "git@github.com:kalpgohil8")
+        jenkins = load "$WORKSPACE/Jenkins/utils/jenkins.groovy"
     }
 
     stage('Test') {
@@ -10,10 +16,6 @@ node {
                 image 'python:3.12.1-alpine3.19' 
             }
         }
-
-        git.cloneAndCheckoutBranch("Jenkins", "test-pipeline", "$WORKSPACE", "git@github.com:kalpgohil8")
-
-
         def jsonFile = readJSON file: "workdir/kalp2/Json"
         println ("BoardIp_Dynamic : ${jsonFile['boards'][0]['ports'][0]['ip_addr']}")
 
