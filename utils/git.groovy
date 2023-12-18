@@ -3,7 +3,7 @@ def cloneAndCheckoutBranch(String gitproject, String branch, String path="/home/
         try {
             sh """ 
                 #!/bin/bash -v
-                set -euo pipefail
+                set -eu
                 mkdir -p ${path}
                 cd ${path}
                 if [ ! -e ${gitproject} ]; then
