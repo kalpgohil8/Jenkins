@@ -5,7 +5,7 @@ node {
     }
 
     stage('Preparation') {
-        git.cloneAndCheckoutBranch("Jenkins", "test-pipeline", "$WORKSPACE", "git@github.com:kalpgohil8")
+        git branch: 'test-pipeline', url: 'git@github.com:kalpgohil8/Jenkins.git'
         jenkins = load "$WORKSPACE/Jenkins/utils/jenkins.groovy"
     }
 
