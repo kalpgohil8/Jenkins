@@ -6,7 +6,7 @@ node {
     stage('Preparation') {
         git branch: 'test-pipeline', url: 'https://github.com/kalpgohil8/Jenkins.git'
         jenkins = load "utils/jenkins.groovy"
-        git.tmp()
+        git.cloneAndCheckoutBranch("Jenkins", "first-pipeline")
     }
 
     stage('Test') {
@@ -14,12 +14,6 @@ node {
             docker {
                 image 'python:3.12.1-alpine3.19' 
             }
-        }
-
-        script {
-            sh """
-                ls -R /home/jenkins/sources
-            """
         }
 
         def jsonFile = readJSON file: "workdir/kalp2/Json"
