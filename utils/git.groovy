@@ -26,7 +26,7 @@ def cloneAndCheckoutBranch(String gitproject, String branch, String path="/home/
 }
 
 
-def tmp(String kalp = "KALP ")
+def tmp()
 {
-    println "Var: ${kalp} "
+    println "Kalp Gohil"
 }
