@@ -6,7 +6,7 @@ node {
     stage('Preparation') {
         git branch: 'test-pipeline', url: 'https://github.com/kalpgohil8/Jenkins.git'
         jenkins = load "utils/jenkins.groovy"
-        jenkins.cloneAndCheckoutBranch("Jenkins", "first-pipeline")
+        git.tmp("Gohil Kalp  ")
     }
 
     stage('Test') {
