@@ -4,10 +4,10 @@ def cloneAndCheckoutBranch(String gitproject, String branch, String path="/home/
             sh """ 
                 #!/bin/bash -v
                 set -eu
-                mkdir -p ${path}
+                sudo mkdir -p ${path}
                 cd ${path}
                 if [ ! -e ${gitproject} ]; then
-                    mkdir -p ${gitproject}
+                    sudo mkdir -p ${gitproject}
                     cd ${gitproject}/..
                     git clone ${server}/${gitproject}
                 fi
@@ -19,7 +19,7 @@ def cloneAndCheckoutBranch(String gitproject, String branch, String path="/home/
             println "Clearing directory, not fully cloned or branch not found, and retrying"
             sh """ 
                 #!/bin/bash -v
-                rm -rf ${path}/${gitproject}
+                sudo rm -rf ${path}/${gitproject}
             """
         }
     }
