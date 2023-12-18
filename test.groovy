@@ -6,11 +6,7 @@ node {
 
     stage('Preparation') {
         git branch: 'test-pipeline', url: 'https://github.com/kalpgohil8/Jenkins.git'
-        script {
-            sh """
-            ls -R
-            """
-        }
+ 
         jenkins = load "utils/jenkins.groovy"
     }
 
@@ -21,6 +17,15 @@ node {
                 image 'python:3.12.1-alpine3.19' 
             }
         }
+
+        git.cloneAndCheckoutBranch("Jenkins", "first-pipeline")
+
+        script{
+            sh """
+                ls -R /home/jenkins/sources
+            """
+        }
+
         def jsonFile = readJSON file: "workdir/kalp2/Json"
         println ("BoardIp_Dynamic : ${jsonFile['boards'][0]['ports'][0]['ip_addr']}")
 
