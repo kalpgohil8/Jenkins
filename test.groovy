@@ -6,6 +6,11 @@ node {
 
     stage('Preparation') {
         git branch: 'test-pipeline', url: 'https://github.com/kalpgohil8/Jenkins.git'
+        script {
+            sh """
+            ls
+            """
+        }
         jenkins = load "$WORKSPACE/Jenkins/utils/jenkins.groovy"
     }
 
