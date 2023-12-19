@@ -4,6 +4,7 @@ def cloneAndCheckoutBranch(String gitproject, String branch, String server = "gi
             sh """ 
                 #!/bin/bash -v
                 set -eu
+                pwd
                 if [ ! -e ${gitproject} ]; then
                     sudo mkdir -p ${gitproject}
                     cd ${gitproject}/..
