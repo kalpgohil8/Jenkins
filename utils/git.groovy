@@ -1,11 +1,9 @@
-def cloneAndCheckoutBranch(String gitproject, String branch, String path="/home/jenkins/sources", String server = "git@github.com:kalpgohil8") {
+def cloneAndCheckoutBranch(String gitproject, String branch, String server = "git@github.com:kalpgohil8") {
     retry(10) {
         try {
             sh """ 
                 #!/bin/bash -v
                 set -eu
-                sudo mkdir -p ${path}
-                cd ${path}
                 if [ ! -e ${gitproject} ]; then
                     sudo mkdir -p ${gitproject}
                     cd ${gitproject}/..
@@ -19,7 +17,7 @@ def cloneAndCheckoutBranch(String gitproject, String branch, String path="/home/
             println "Clearing directory, not fully cloned or branch not found, and retrying"
             sh """ 
                 #!/bin/bash -v
-                sudo rm -rf ${path}/${gitproject}
+                sudo rm -rf ${gitproject}
             """
         }
     }
