@@ -29,16 +29,19 @@ node {
         def str2 = jsonFile_tmp['device_name2']
         def str3 = jsonFile_tmp['device_name3']
 
+        println("str1 : ${str1}")
+        println("str2 : ${str2}")
+        println("str3 : ${str3}")
         if (str1.contains("cn10kas") || str1.contains("106")) {
-            println("Contains 1")
+            println("str 1 contains")
         }
 
         if (str2.contains("cn10kas") || str2.contains("106")) {
-            println("Contains 1")
+            println("str 2 contains")
         }
 
         if (str3.contains("cn10kas") || str3.contains("106")) {
-            println("Contains 1")
+            println("str 3 contains")
         }
 
         def input_after = readJSON file: "workdir/kalp2/input.json"
