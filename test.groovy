@@ -6,7 +6,7 @@ node {
     stage('Preparation') {
         git branch: 'test-pipeline', url: 'https://github.com/kalpgohil8/Jenkins.git'
         jenkins = load "utils/jenkins.groovy"
-        git.cloneAndCheckoutBranch("Jenkins", "first-pipeline")
+        // git.cloneAndCheckoutBranch("Jenkins", "first-pipeline")
     }
 
     stage('Test') {
@@ -23,6 +23,23 @@ node {
         println("Input.json before change: ${input_before}")
 
         copy_ip_to_Json("workdir/kalp2/input.json", jsonFile['boards'][0]['ports'][0]['ip_addr'].trim())
+
+        def jsonFile_tmp = readJSON file: "workdir/kalp2/Json"
+        def str1 = jsonFile_tmp['device_name1']
+        def str2 = jsonFile_tmp['device_name2']
+        def str3 = jsonFile_tmp['device_name3']
+
+        if (str1.contains("cn10kas") || str1.contains("106")) {
+            println("Contains 1")
+        }
+
+        if (str2.contains("cn10kas") || str2.contains("106")) {
+            println("Contains 1")
+        }
+
+        if (str3.contains("cn10kas") || str3.contains("106")) {
+            println("Contains 1")
+        }
 
         def input_after = readJSON file: "workdir/kalp2/input.json"
         println("Input.json after change: ${input_after}")

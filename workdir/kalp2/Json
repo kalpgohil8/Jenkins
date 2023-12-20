@@ -1,5 +1,7 @@
 {
-    "device_name": "MyDevice",
+    "device_name1": "My106Device",
+    "device_name2": "Mycn10kasDevice",
+    "device_name3": "My106Device",
     "ip_address": "192.168.1.100",
     "boards" : [
         {
@@ -10,7 +12,7 @@
                     "ip_addr": "10.10.10.11",
                     "linux": "eth0"
                 }
-            ],
+            ]
         }
     ],
     "mac_address": "00:1A:2B:3C:4D:5E",
