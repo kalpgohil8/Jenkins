@@ -1,7 +1,7 @@
 {
     "device_name1": "My106Device",
     "device_name2": "Mycn10kasDevice",
-    "device_name3": "My106Device",
+    "device_name3": "MyDevice",
     "ip_address": "192.168.1.100",
     "boards" : [
         {
