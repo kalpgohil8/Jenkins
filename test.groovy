@@ -16,7 +16,7 @@ node {
             }
         }
 
-        def cfgFile = readJSON file: "workdir/kalp2/tmp.cfg"
+        def cfgFile = readFile "workdir/kalp2/tmp.cfg"
         println("CFG File: ${cfgFile}")
 
         def jsonFile = readJSON file: "workdir/kalp2/Json"
