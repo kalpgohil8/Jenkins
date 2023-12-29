@@ -17,16 +17,15 @@ node {
         }
 
         def jsontmp = readJSON text: tobechanged, returnPojo: true
+        def cfgFile = readFile "workdir/kalp2/tmp.cfg"
+        println("CFG File: ${cfgFile}")
+
         jsontmp.each { subSection, subSectionValue ->
             subSectionValue.each { key, value -> 
                 echo "$subSection : $key : $value"
+                cfgFile = cfgFile.replaceAll(/(\[${subSection}\]\s*key\s*=\s*).*/, "\$1${value}")
             }
         }
-
-        // def cfgFile = readFile "workdir/kalp2/tmp.cfg"
-        // println("CFG File: ${cfgFile}")
-
-        // cfgFile = cfgFile.replaceAll(/(\[${sectionToUpdate}\]\s*server_ip\s*=\s*).*/, "\$1${newServerIp}")
 
         // writeFile file: "workdir/kalp2/tmp.cfg", text: cfgFile
 
