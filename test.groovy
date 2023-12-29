@@ -27,21 +27,12 @@ node {
             sh "cat ${workspace}/workdir/kalp2/input.json"
         }
 
-        jsontmp.each { subSection, subSectionValue ->
-            def sectionPattern = "\\[${subSection}\\]"
+        def userInputFile = readJSON file: "${workspace}/workdir/kalp2/input.json"
+        def gitFile = readJSON file: "${workspace}/workdir/kalp2/tmp.json"
 
-            subSectionValue.each { key, value ->
-                println("${key} : ${value}")
-                def parameterPattern = "${sectionPattern}\\s*${key}\\s*=\\s*.*"
-                def parameterReplacement = "${sectionPattern} ${key} = ${value}"
-                cfgFile = cfgFile.replace(parameterPattern, parameterReplacement)
-            }
+        userInputFile.each { subSection, subSectionValue ->
+        println("${subSection} : ${subSectionValue}")
         }
-
-        writeFile file: "workdir/kalp2/tmp.cfg", text: cfgFile
-
-        def cfgFile1 = readFile "workdir/kalp2/tmp.cfg"
-        println("CFG File: ${cfgFile1}")
 
         def jsonFile = readJSON file: "workdir/kalp2/Json"
         println("BoardIp_Dynamic: ${jsonFile['boards'][0]['ports'][0]['ip_addr']}")
