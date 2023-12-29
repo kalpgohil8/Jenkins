@@ -21,9 +21,9 @@ node {
         println("CFG File: ${cfgFile}")
 
         jsontmp.each { subSection, subSectionValue ->
-            subSectionValue.each { key, value -> 
-                echo "$subSection : $key : $value"
-                cfgFile = cfgFile.replaceAll(/(\[subSection\]\s*key\s*=\s*).*/, "\$1${value}")
+            subSectionValue.each { key, value ->
+                def pattern = ~/"\\[$subSection\\]\\s*$key\\s*=\\s*.*"/
+                cfgFile = cfgFile.replaceAll(pattern, "[${subSection}] ${key} = ${value}")
             }
         }
 
