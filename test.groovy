@@ -17,8 +17,10 @@ node {
         }
 
         def jsontmp = readJSON text: tobechanged, returnPojo: true
-        jsontmp.each { key, value ->
-            echo "$key : $value"
+        jsontmp.each { subSection, subSectionValue ->
+            subSection.each { key, value -> 
+                echo "$subSection : $key : $value"
+            }
         }
 
         // def cfgFile = readFile "workdir/kalp2/tmp.cfg"
