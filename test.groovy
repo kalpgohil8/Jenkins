@@ -22,7 +22,7 @@ node {
         def sectionToUpdate = 'test1'
         def newServerIp = '12.12.12.12'
 
-        cfgFile = cfgFile.replaceAll(/(\[${sectionToUpdate}\]\s*server_ip\s*=\s*).*$/, "\$1${newServerIp}")
+        cfgFile = cfgFile.replaceAll(/(\[${sectionToUpdate}\]\s*server_ip\s*=\s*).*/, "\$1${newServerIp}")
 
         writeFile file: "workdir/kalp2/tmp.cfg", text: cfgFile
 
