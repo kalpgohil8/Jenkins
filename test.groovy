@@ -31,7 +31,10 @@ node {
         def gitFile = readJSON file: "${workspace}/workdir/kalp2/tmp.json"
 
         userInputFile.each { subSection, subSectionValue ->
-        println("${subSection} : ${subSectionValue}")
+            println("${subSection} : ${subSectionValue}")
+            subSectionValue.each { key, value ->
+                println("${key} : ${value}")
+            }
         }
 
         def jsonFile = readJSON file: "workdir/kalp2/Json"
