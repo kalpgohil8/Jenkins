@@ -4,7 +4,7 @@ import sys
 import os
 
 cfgFile = sys.argv[1]
-json_file = os.path.splitext(cfgFile)[0] + 'tmp.json'
+json_file = sys.argv[2] + '.json'
 
 # Read the configuration file
 config = configparser.ConfigParser()
