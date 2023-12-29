@@ -38,7 +38,7 @@ node {
                 println("${key} : ${value}")
                 def parameterPattern = "${sectionPattern}\\s*${key}\\s*=\\s*.*"
                 def parameterReplacement = "${sectionPattern} ${key} = ${value}"
-                cfgFile = cfgFile.replaceAll(parameterPattern, parameterReplacement)
+                cfgFile = cfgFile.replaceFirst(parameterPattern, parameterReplacement)
             }
         }
 
