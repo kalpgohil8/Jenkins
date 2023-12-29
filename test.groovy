@@ -18,7 +18,7 @@ node {
 
         def jsontmp = readJSON text: tobechanged, returnPojo: true
         jsontmp.each { subSection, subSectionValue ->
-            subSection.each { key, value -> 
+            subSectionValue.each { key, value -> 
                 echo "$subSection : $key : $value"
             }
         }
