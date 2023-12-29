@@ -25,6 +25,9 @@ node {
             println("${subSection} : ${subSectionValue}")
             subSectionValue.each { key, value ->
                 println("${key} : ${value}")
+                def pattern = "\\[${subSection}\\]\\s*${key}\\s*=\\s*.*"
+                def replacement = "[${subSection}] ${key} = ${value}"
+                cfgFile = cfgFile.replaceAll(pattern, replacement)
             }
         }
 
