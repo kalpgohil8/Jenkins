@@ -21,17 +21,26 @@ node {
         def cfgFile = readFile "workdir/kalp2/tmp.cfg"
         println("CFG File: ${cfgFile}")
 
+        // jsontmp.each { subSection, subSectionValue ->
+        //     println("${subSection} : ${subSectionValue}")
+        //     subSectionValue.each { key, value ->
+        //         println("${key} : ${value}")
+        //         def pattern = "\\[${subSection}\\]\\s*${key}\\s*=\\s*.*"
+        //         def replacement = "[${subSection}] ${key} = ${value}"
+        //         cfgFile = cfgFile.replaceAll(pattern, replacement)
+        //     }
+        // }
+
         jsontmp.each { subSection, subSectionValue ->
-            println("${subSection} : ${subSectionValue}")
+            def sectionPattern = "\\[${subSection}\\]"
+
             subSectionValue.each { key, value ->
                 println("${key} : ${value}")
-                def pattern = "\\[${subSection}\\]\\s*${key}\\s*=\\s*.*"
-                def replacement = "[${subSection}] ${key} = ${value}"
-                cfgFile = cfgFile.replaceAll(pattern, replacement)
+                def parameterPattern = "${sectionPattern}\\s*${key}\\s*=\\s*.*"
+                def parameterReplacement = "${sectionPattern} ${key} = ${value}"
+                cfgFile = cfgFile.replaceAll(parameterPattern, parameterReplacement)
             }
         }
-
-
 
         writeFile file: "workdir/kalp2/tmp.cfg", text: cfgFile
 
