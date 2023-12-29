@@ -45,10 +45,10 @@ node {
             sh "python3 ${workspace}/jsontocfg.py ${workspace}/workdir/kalp2/input.json"
         }
 
-        def tmpcfg = readFile "${workspace}/workdir/kalp2/tmp.json"
+        def tmpcfg = readFile "${workspace}/workdir/kalp2/tmp.cfg"
         println(tmpcfg)
 
-        def inputcfg = readFile "${workspace}/workdir/kalp2/input.json"
+        def inputcfg = readFile "${workspace}/workdir/kalp2/input.cfg"
         println(inputcfg)
 
         // def jsonFile = readJSON file: "workdir/kalp2/Json"
