@@ -16,6 +16,9 @@ node {
             }
         }
 
+        def cfgFile = readJSON file: "workdir/kalp2/tmp.cfg"
+        println("CFG File: ${cfgFile}")
+
         def jsonFile = readJSON file: "workdir/kalp2/Json"
         println("BoardIp_Dynamic: ${jsonFile['boards'][0]['ports'][0]['ip_addr']}")
 
@@ -24,10 +27,9 @@ node {
 
         copy_ip_to_Json("workdir/kalp2/input.json", jsonFile['boards'][0]['ports'][0]['ip_addr'].trim())
 
-        def jsonFile_tmp = readJSON file: "workdir/kalp2/Json"
-        def str1 = jsonFile_tmp['device_name1']
-        def str2 = jsonFile_tmp['device_name2']
-        def str3 = jsonFile_tmp['device_name3']
+        def str1 = jsonFile['device_name1']
+        def str2 = jsonFile['device_name2']
+        def str3 = jsonFile['device_name3']
 
         println("str1 : ${str1}")
         println("str2 : ${str2}")
