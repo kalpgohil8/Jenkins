@@ -22,13 +22,13 @@ node {
         println("CFG File: ${cfgFile}")
 
         jsontmp.each { subSection, subSectionValue ->
+            println("${subSection} : ${subSectionValue}")
             subSectionValue.each { key, value ->
-                echo "${subSection} : ${key} : ${value}"
-                def pattern = "\\[${subSection}\\]\\s*${key}\\s*=\\s*.*"
-                def replacement = "[${subSection}] ${key} = ${value}"
-                cfgFile = cfgFile.replaceAll(pattern, replacement)
+                println("${key} : ${value}")
             }
         }
+
+
 
         writeFile file: "workdir/kalp2/tmp.cfg", text: cfgFile
 
