@@ -24,7 +24,7 @@ node {
 
         cfgFile = cfgFile.replaceAll(/(\[${sectionToUpdate}\]\s*server_ip\s*=\s*).*$/, "\$1${newServerIp}")
 
-        writeFile file: "workdir/kalp2/tmp.cfg" text: cfgFile
+        writeFile file: "workdir/kalp2/tmp.cfg", text: cfgFile
 
         def cfgFile1 = readFile "workdir/kalp2/tmp.cfg"
         println("CFG File: ${cfgFile1}")
