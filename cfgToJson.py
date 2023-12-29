@@ -3,12 +3,12 @@ import json
 import sys
 import os
 
-cfgFile = sys.argv[1]
-json_file = sys.argv[2] + '.json'
+cfg_file = sys.argv[1]
+json_file = sys.argv[2] + 'tmp.json'
 
 # Read the configuration file
 config = configparser.ConfigParser()
-config.read(cfgFile)
+config.read(cfg_file)
 
 # Convert the configuration to a dictionary
 config_dict = {}
