@@ -20,7 +20,7 @@ node {
         println(inputJson)
 
         script {
-            sh "python3 ${workspace}/cfgToJson.py ${workspace}/workdir/kalp2/tmp.cfg ${workspace}/workdir/kalp2/tmp"
+            sh "python3 ${workspace}/cfgToJson.py ${workspace}/workdir/kalp2/tmp.cfg ${workspace}/workdir/kalp2/"
             sh "python3 ${workspace}/strtoJson.py '${inputJson}' ${workspace}/workdir/kalp2/"
             sh "cat ${workspace}/workdir/kalp2/tmp.json"
             sh "cat ${workspace}/workdir/kalp2/input.json"
@@ -30,14 +30,15 @@ node {
         def gitFile = readJSON file: "${workspace}/workdir/kalp2/tmp.json"
 
         userInputFile.each { subSection, subSectionValue ->
-            // println("${subSection} : ${subSectionValue}")
             subSectionValue.each { key, value ->
-                // println("${key} : ${value}")
                 gitFile[subSection][key] = value
             }
         }
 
         writeJSON file: "${workspace}/workdir/kalp2/tmp.json", json: gitFile
+        
+        def gitFile1 = readJSON file: "${workspace}/workdir/kalp2/tmp.json"
+        println(gitFile1)
 
         script {
             sh "python3 ${workspace}/jsontocfg.py ${workspace}/workdir/kalp2/tmp.json"
@@ -45,43 +46,43 @@ node {
         }
 
         def tmpcfg = readFile "${workspace}/workdir/kalp2/tmp.json"
-        println("CFG File: ${tmpcfg}")
+        println(tmpcfg)
 
         def inputcfg = readFile "${workspace}/workdir/kalp2/input.json"
-        println("CFG File: ${input}")
+        println(inputcfg)
 
-        def jsonFile = readJSON file: "workdir/kalp2/Json"
-        println("BoardIp_Dynamic: ${jsonFile['boards'][0]['ports'][0]['ip_addr']}")
+        // def jsonFile = readJSON file: "workdir/kalp2/Json"
+        // println("BoardIp_Dynamic: ${jsonFile['boards'][0]['ports'][0]['ip_addr']}")
 
-        def input_before = readJSON file: "workdir/kalp2/input.json"
-        println("Input.json before change: ${input_before}")
+        // def input_before = readJSON file: "workdir/kalp2/input.json"
+        // println("Input.json before change: ${input_before}")
 
-        copy_ip_to_Json("workdir/kalp2/input.json", jsonFile['boards'][0]['ports'][0]['ip_addr'].trim())
+        // copy_ip_to_Json("workdir/kalp2/input.json", jsonFile['boards'][0]['ports'][0]['ip_addr'].trim())
 
-        def str1 = jsonFile['device_name1']
-        def str2 = jsonFile['device_name2']
-        def str3 = jsonFile['device_name3']
+        // def str1 = jsonFile['device_name1']
+        // def str2 = jsonFile['device_name2']
+        // def str3 = jsonFile['device_name3']
 
-        println("str1 : ${str1}")
-        println("str2 : ${str2}")
-        println("str3 : ${str3}")
-        if (str1.contains("cn10kas") || str1.contains("106")) {
-            println("str 1 contains")
-        }
+        // println("str1 : ${str1}")
+        // println("str2 : ${str2}")
+        // println("str3 : ${str3}")
+        // if (str1.contains("cn10kas") || str1.contains("106")) {
+        //     println("str 1 contains")
+        // }
 
-        if (str2.contains("cn10kas") || str2.contains("106")) {
-            println("str 2 contains")
-        }
+        // if (str2.contains("cn10kas") || str2.contains("106")) {
+        //     println("str 2 contains")
+        // }
 
-        if (str3.contains("cn10kas") || str3.contains("106")) {
-            println("str 3 contains")
-        }
+        // if (str3.contains("cn10kas") || str3.contains("106")) {
+        //     println("str 3 contains")
+        // }
 
-        def input_after = readJSON file: "workdir/kalp2/input.json"
-        println("Input.json after change: ${input_after}")
+        // def input_after = readJSON file: "workdir/kalp2/input.json"
+        // println("Input.json after change: ${input_after}")
 
-        def AIP = sh returnStdout: true, script: "python3 get_dynamic_ip.py workdir/kalp2/input.json B"
-        println("AIP: ${AIP}")
+        // def AIP = sh returnStdout: true, script: "python3 get_dynamic_ip.py workdir/kalp2/input.json B"
+        // println("AIP: ${AIP}")
     }
 }
 
