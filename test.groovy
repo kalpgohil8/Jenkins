@@ -24,7 +24,7 @@ node {
         script {
             pwd
             sh "python3 ${workspace}/cfgToJson.py ${workspace}/workdir/kalp2/tmp.cfg"
-            cat tmp.json
+            sh "cat ${workspace}/workdir/kalp2/tmp.json"
         }
 
         writeFile file: "workdir/kalp2/tmp.cfg", text: cfgFile
