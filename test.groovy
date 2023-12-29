@@ -20,7 +20,6 @@ node {
         println(inputJson)
 
         script {
-            pwd
             sh "python3 ${workspace}/cfgToJson.py ${workspace}/workdir/kalp2/tmp.cfg ${workspace}/workdir/kalp2/tmp"
             sh "python3 ${workspace}/strtoJson.py '${inputJson}' ${workspace}/workdir/kalp2/"
             sh "cat ${workspace}/workdir/kalp2/tmp.json"
@@ -40,8 +39,16 @@ node {
 
         writeJSON file: "${workspace}/workdir/kalp2/tmp.json", json: gitFile
 
-        def gitFile1 = readJSON file: "${workspace}/workdir/kalp2/tmp.json"
-        println("gitFile1 : ${gitFile1}")
+        script {
+            sh "python3 ${workspace}/jsontocfg.py ${workspace}/workdir/kalp2/tmp.json"
+            sh "python3 ${workspace}/jsontocfg.py ${workspace}/workdir/kalp2/input.json"
+        }
+
+        def tmpcfg = readFile "${workspace}/workdir/kalp2/tmp.json"
+        println("CFG File: ${tmpcfg}")
+
+        def inputcfg = readFile "${workspace}/workdir/kalp2/input.json"
+        println("CFG File: ${input}")
 
         def jsonFile = readJSON file: "workdir/kalp2/Json"
         println("BoardIp_Dynamic: ${jsonFile['boards'][0]['ports'][0]['ip_addr']}")
