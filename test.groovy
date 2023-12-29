@@ -16,15 +16,17 @@ node {
             }
         }
 
-        def jsontmp = readJSON text: tobechanged, returnPojo: true
+        def inputJson = params.tobechanged
+        def jsontmp = readJSON text: inputJson, returnPojo: true
         def cfgFile = readFile "workdir/kalp2/tmp.cfg"
         println("CFG File: ${cfgFile}")
 
         jsontmp.each { subSection, subSectionValue ->
             subSectionValue.each { key, value ->
-                echo "${subSectionValue} : ${key} : ${value}"
+                echo "${subSection} : ${key} : ${value}"
                 def pattern = "\\[${subSection}\\]\\s*${key}\\s*=\\s*.*"
-                cfgFile = cfgFile.replaceAll(pattern, "[${subSection}] ${key} = ${value}")
+                def replacement = "[${subSection}] ${key} = ${value}"
+                cfgFile = cfgFile.replaceAll(pattern, replacement)
             }
         }
 
