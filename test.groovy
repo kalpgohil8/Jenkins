@@ -23,7 +23,7 @@ node {
         jsontmp.each { subSection, subSectionValue ->
             subSectionValue.each { key, value -> 
                 echo "$subSection : $key : $value"
-                cfgFile = cfgFile.replaceAll(/(\[${subSection}\]\s*key\s*=\s*).*/, "\$1${value}")
+                cfgFile = cfgFile.replaceAll(/(\[subSection\]\s*key\s*=\s*).*/, "\$1${value}")
             }
         }
 
