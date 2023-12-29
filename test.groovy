@@ -16,18 +16,14 @@ node {
             }
         }
 
-        def cfgFile = readFile "workdir/kalp2/tmp.cfg"
-        println("CFG File: ${cfgFile}")
+        println("Parameter : ${tobechanged}")
 
-        def sectionToUpdate = 'test1'
-        def newServerIp = '12.12.12.12'
+        // def cfgFile = readFile "workdir/kalp2/tmp.cfg"
+        // println("CFG File: ${cfgFile}")
 
-        cfgFile = cfgFile.replaceAll(/(\[${sectionToUpdate}\]\s*server_ip\s*=\s*).*/, "\$1${newServerIp}")
+        // cfgFile = cfgFile.replaceAll(/(\[${sectionToUpdate}\]\s*server_ip\s*=\s*).*/, "\$1${newServerIp}")
 
-        writeFile file: "workdir/kalp2/tmp.cfg", text: cfgFile
-
-        def cfgFile1 = readFile "workdir/kalp2/tmp.cfg"
-        println("CFG File: ${cfgFile1}")
+        // writeFile file: "workdir/kalp2/tmp.cfg", text: cfgFile
 
         def jsonFile = readJSON file: "workdir/kalp2/Json"
         println("BoardIp_Dynamic: ${jsonFile['boards'][0]['ports'][0]['ip_addr']}")
