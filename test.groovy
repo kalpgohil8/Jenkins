@@ -16,7 +16,7 @@ node {
             }
         }
 
-        def jsontmp = readJSON text: ${tobechanged}
+        def jsontmp = readJSON text: tobechanged
         println("Patameter: ${jsontmp}")
 
         // def cfgFile = readFile "workdir/kalp2/tmp.cfg"
