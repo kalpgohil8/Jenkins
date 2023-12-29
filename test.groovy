@@ -19,6 +19,11 @@ node {
         def cfgFile = readFile "workdir/kalp2/tmp.cfg"
         println("CFG File: ${cfgFile}")
 
+        def sectionToUpdate = 'test1'
+        def newServerIp = '12.12.12.12'
+
+        cfgFile = cfgFile.replaceAll(/(\[${sectionToUpdate}\]\s*server_ip\s*=\s*).*$/, "\$1${newServerIp}")
+
         def jsonFile = readJSON file: "workdir/kalp2/Json"
         println("BoardIp_Dynamic: ${jsonFile['boards'][0]['ports'][0]['ip_addr']}")
 
