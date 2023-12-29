@@ -16,8 +16,10 @@ node {
             }
         }
 
-        def jsontmp = readJSON text: tobechanged
-        println("Patameter: ${jsontmp}")
+        def jsontmp = readJSON text: tobechanged, returnPojo: true
+        jsontmp.each { key, value ->
+            echo "$key : $value"
+        }
 
         // def cfgFile = readFile "workdir/kalp2/tmp.cfg"
         // println("CFG File: ${cfgFile}")
