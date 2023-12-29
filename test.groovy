@@ -17,6 +17,7 @@ node {
         }
 
         def inputJson = params.tobechanged
+        println(inputJson)
 
         script {
             pwd
