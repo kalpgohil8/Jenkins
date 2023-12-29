@@ -17,14 +17,24 @@ node {
         }
 
         def inputJson = params.tobechanged
-        def jsontmp = readJSON text: inputJson, returnPojo: true
-        def cfgFile = readFile "workdir/kalp2/tmp.cfg"
-        println("CFG File: ${cfgFile}")
 
         script {
             pwd
-            sh "python3 ${workspace}/cfgToJson.py ${workspace}/workdir/kalp2/tmp.cfg"
+            sh "python3 ${workspace}/cfgToJson.py ${workspace}/workdir/kalp2/tmp.cfg ${workspace}/workdir/kalp2/tmp"
+            sh "python3 ${workspace}/strtoJson.py ${inputJson} ${workspace}/workdir/kalp2/"
             sh "cat ${workspace}/workdir/kalp2/tmp.json"
+            sh "cat ${workspace}/workdir/kalp2/input.json"
+        }
+
+        jsontmp.each { subSection, subSectionValue ->
+            def sectionPattern = "\\[${subSection}\\]"
+
+            subSectionValue.each { key, value ->
+                println("${key} : ${value}")
+                def parameterPattern = "${sectionPattern}\\s*${key}\\s*=\\s*.*"
+                def parameterReplacement = "${sectionPattern} ${key} = ${value}"
+                cfgFile = cfgFile.replace(parameterPattern, parameterReplacement)
+            }
         }
 
         writeFile file: "workdir/kalp2/tmp.cfg", text: cfgFile
