@@ -23,7 +23,7 @@ node {
 
         script {
             pwd
-            sh "python cfgToJson.py workdir/kalp2/tmp.cfg"
+            sh "python ${workspace}/cfgToJson.py workdir/kalp2/tmp.cfg"
             cat tmp.json
         }
 
