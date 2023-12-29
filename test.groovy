@@ -31,11 +31,17 @@ node {
         def gitFile = readJSON file: "${workspace}/workdir/kalp2/tmp.json"
 
         userInputFile.each { subSection, subSectionValue ->
-            println("${subSection} : ${subSectionValue}")
+            // println("${subSection} : ${subSectionValue}")
             subSectionValue.each { key, value ->
-                println("${key} : ${value}")
+                // println("${key} : ${value}")
+                gitFile[subSection][key] = value
             }
         }
+
+        writeJSON file: "${workspace}/workdir/kalp2/tmp.json", json: gitFile
+
+        def gitFile1 = readJSON file: "${workspace}/workdir/kalp2/tmp.json"
+        println("gitFile1 : ${gitFile1}")
 
         def jsonFile = readJSON file: "workdir/kalp2/Json"
         println("BoardIp_Dynamic: ${jsonFile['boards'][0]['ports'][0]['ip_addr']}")
