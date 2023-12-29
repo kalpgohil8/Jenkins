@@ -27,7 +27,10 @@ node {
             }
         }
 
-        // writeFile file: "workdir/kalp2/tmp.cfg", text: cfgFile
+        writeFile file: "workdir/kalp2/tmp.cfg", text: cfgFile
+
+        def cfgFile1 = readFile "workdir/kalp2/tmp.cfg"
+        println("CFG File: ${cfgFile1}")
 
         def jsonFile = readJSON file: "workdir/kalp2/Json"
         println("BoardIp_Dynamic: ${jsonFile['boards'][0]['ports'][0]['ip_addr']}")
