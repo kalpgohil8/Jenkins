@@ -12,11 +12,7 @@ node {
             }
         }
 
-        def jsonFile = readJSON file: "Json"
-        echo "${jsonFile}"
-
-        def jsonFile1 = readJSON file: "Json"
-        echo "${jsonFile1}"
+        helper("Json")
 
     }
 }
@@ -52,7 +48,5 @@ def helper(json_file_path) {
     // Read JSON data again from the modified file
     def jsonFile1 = readJSON file: file_path
 
-    // Convert to formatted JSON string and print
-    def formatted_data = groovy.json.JsonOutput.prettyPrint(groovy.json.JsonOutput.toJson(jsonFile1))
-    echo formatted_data
+    println jsonFile1
 }
