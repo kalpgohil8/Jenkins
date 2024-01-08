@@ -16,7 +16,7 @@ node {
         echo "${jsonFile}"
 
         script {
-            sh "python kalp.py"
+            sh "python3 kalp.py"
         } 
 
         def jsonFile1 = readJSON file: "Json"
