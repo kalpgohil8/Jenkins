@@ -34,11 +34,11 @@ def helper(json_file_path) {
         if (alias == "dut") {
             uart.host = dut_host
             uart.port = dut_port
-            uart.connection_url = "${uart.host} ${uart.port}"
+            uart.connection_url = ${uart.host} + " " + ${uart.port}
         } else if (alias == "mcu") {
             uart.host = mcu_host
             uart.port = mcu_port
-            uart.connection_url = "${uart.host} ${uart.port}"
+            uart.connection_url = ${uart.host} + " " + ${uart.port}
         }
     }
 
