@@ -8,7 +8,7 @@ node {
         def json_data = readJSON file: "data.json"
         json_data.each { iteration ->
         println iteration
-        def run_mode_val_array = iteration['run_mode'].split("\\|")
+        def run_mode_val_array = iteration['run_mode'].split("\|")
         println run_mode_val_array
         }
     }
