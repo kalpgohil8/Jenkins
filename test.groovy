@@ -7,7 +7,7 @@ node {
     stage('Test') {
         def json_data = readJSON file: "data.json"
         sh """ 
-            cat json_data
+            cat ${json_data}
         """
     }
 }
