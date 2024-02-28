@@ -9,7 +9,7 @@ node {
         json_data.each { iteration ->
         println iteration
         def run_mode_val_array = iteration['run_mode'].split("\\|")
-        echo run_mode_val_array
+        println run_mode_val_array.join(', ')
         }
     }
 }
