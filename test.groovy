@@ -6,8 +6,8 @@ node {
 
     stage('Test') {
         def json_data = readJSON file: "data.json"
-        sh """ 
-            cat ${json_data}
-        """
+        json_data.each { iteration ->
+        println iteration
+        }
     }
 }
