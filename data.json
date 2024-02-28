@@ -1,0 +1,17 @@
+[
+    {
+        "setup_name": "kalp",
+        "vset_key": "SDK-11.U.release",
+        "run_mode": "thor_sdk | thor_powerapp"
+    },
+    {
+        "setup_name": "het",
+        "vset_key": "SDK-11.U.release",
+        "run_mode": "thor_sdk_1 | thor_powerapp_1"
+    },
+    {
+        "setup_name": "happy",
+        "vset_key": "SDK-11.U.release",
+        "run_mode": "thor_sdk_2 | thor_powerapp_2"
+    }
+]

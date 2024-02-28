@@ -5,7 +5,9 @@ node {
     }
 
     stage('Test') {
-        echo 'Test'
+        def json_data = readJSON file: "data.json"
+        sh """ 
+            cat json_data
+        """
     }
-
 }
