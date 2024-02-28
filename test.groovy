@@ -10,7 +10,7 @@ node {
         println iteration
         def run_mode_val_array = iteration['run_mode'].split("\\|")
         run_mode_val_array = run_mode_val_array.collect{ mod_val ->mod_val.trim() }
-        if(run_mode_val_array.contains(run_mode.to_string().trim())){
+        if(run_mode_val_array.contains(run_mode.toString().trim())){
             println "DONE"
         } else {
             println "NOT DONE"
