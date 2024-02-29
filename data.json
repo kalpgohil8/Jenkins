@@ -2,16 +2,25 @@
     {
         "setup_name": "kalp",
         "vset_key": "SDK-11.U.release",
-        "run_mode": "thor_sdk | thor_powerapp"
+        "run_mode": "thor_sdk | thor_powerapp | thor_fin",
+        "version": "thor__sdk | thor__powerapp | thor__fin"
     },
     {
         "setup_name": "het",
         "vset_key": "SDK-11.U.release",
-        "run_mode": "thor_sdk_1 | thor_powerapp_1"
+        "run_mode": "thor_sdk_1 | thor_powerapp_1 | thor_fin_1",
+        "version": "thor__sdk_1 | thor__powerapp_1"
     },
     {
         "setup_name": "happy",
         "vset_key": "SDK-11.U.release",
-        "run_mode": "thor_sdk_2 | thor_powerapp_2"
+        "run_mode": "thor_sdk_2",
+        "version": "thor__sdk_2"
+    },
+    {
+        "setup_name": "gohil",
+        "vset_key": "SDK-11.U.release",
+        "run_mode": "thor_sdk_3 | thor_powerapp_3",
+        "version": "thor__sdk_3 | thor__powerapp_3"
     }
 ]
