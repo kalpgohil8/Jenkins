@@ -13,9 +13,15 @@ node {
             run_mode_val_array = run_mode_val_array.collect{ mod_val ->mod_val.trim() }
             
             if(run_mode_val_array.contains(run_mode.trim())) {
-                println "DONE"
-            } else {
-                println "NOT DONE"
+                def version_val_array = iteration['version'].split("\\|")
+                version_val_array = version_val_array.collect{ mod_val ->mod_val.trim() }
+
+                if(run_mode_val_array.size() == version_val_array.size()){
+                    println "DONE"
+                }
+                else {
+                    println "NOT DONE"
+                }
             }
         }
     }
