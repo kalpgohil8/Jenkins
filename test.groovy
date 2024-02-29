@@ -10,18 +10,12 @@ node {
             println iteration
             
             def run_mode_val_array = iteration['run_mode'].split("\\|")
-            run_mode_val_array = run_mode_val_array.collect{ mod_val ->mod_val }
+            run_mode_val_array = run_mode_val_array.collect{ mod_val ->mod_val.trim() }
             
-            if(run_mode_val_array.contains(run_mode)){
-                def version_val_array = iteration['version'].split("\\|")
-                version_val_array = version_val_array.collect{ mod_val ->mod_val }
-                
-                if (run_mode_val_array.size() == version_val_array.size()){
-                    println "DONE"
-                }
-                else {
-                    println "NOT DONE"
-                }
+            if(run_mode_val_array.contains(run_mode.trim())) {
+                println "DONE"
+            } else {
+                println "NOT DONE"
             }
         }
     }
