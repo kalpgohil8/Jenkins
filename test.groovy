@@ -5,9 +5,11 @@ node {
     }
 
     stage('Test') {
+        def rowNumber = 0
+
         def json_data = readJSON file: "data.json"
         json_data.each { iteration ->
-            println iteration
+            rowNumber++
             
             def run_mode_val_array = iteration['run_mode'].split("\\|")
             run_mode_val_array = run_mode_val_array.collect{ mod_val ->mod_val.trim() }
@@ -19,7 +21,7 @@ node {
             println "${version_val_array.size()}"
 
             if(run_mode_val_array.size() != version_val_array.size()){
-                println "NOT DONE"
+                println "NOT DONE : ${rowNumber}"
             }
             else {
                 println "DONE"

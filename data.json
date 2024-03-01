@@ -12,6 +12,24 @@
         "version": "thor__sdk_1 | thor__powerapp_1"
     },
     {
+        "setup_name": "",
+        "vset_key": "",
+        "run_mode": "",
+        "version": ""
+    },
+    {
+        "setup_name": "#nightlies",
+        "vset_key": "",
+        "run_mode": "",
+        "version": ""
+    },
+    {
+        "setup_name": "",
+        "vset_key": "",
+        "run_mode": "",
+        "version": ""
+    },
+    {
         "setup_name": "happy",
         "vset_key": "SDK-11.U.release",
         "run_mode": "thor_sdk_2",
@@ -22,5 +40,11 @@
         "vset_key": "SDK-11.U.release",
         "run_mode": "thor_sdk_3 | thor_powerapp_3",
         "version": "thor__sdk_3 | thor__powerapp_3"
+    },
+    {
+        "setup_name": "mann",
+        "vset_key": "SDK-11.U.release",
+        "run_mode": "thor_sdk_4 | thor_powerapp_4 | thor_fin_4",
+        "version": "thor__sdk_4 | thor__powerapp_4"
     }
 ]
