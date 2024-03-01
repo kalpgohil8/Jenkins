@@ -12,16 +12,17 @@ node {
             def run_mode_val_array = iteration['run_mode'].split("\\|")
             run_mode_val_array = run_mode_val_array.collect{ mod_val ->mod_val.trim() }
             
-            if(run_mode_val_array.contains(run_mode.trim())) {
-                def version_val_array = iteration['version'].split("\\|")
-                version_val_array = version_val_array.collect{ mod_val ->mod_val.trim() }
+            def version_val_array = iteration['version'].split("\\|")
+            version_val_array = version_val_array.collect{ mod_val ->mod_val.trim() }
+                
+            println "${run_mode_val_array.size()}"
+            println "${version_val_array.size()}"
 
-                if(run_mode_val_array.size() == version_val_array.size()){
-                    println "DONE"
-                }
-                else {
-                    println "NOT DONE"
-                }
+            if(run_mode_val_array.size() != version_val_array.size()){
+                println "NOT DONE"
+            }
+            else {
+                println "DONE"
             }
         }
     }
